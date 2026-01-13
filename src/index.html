@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate carbon emissions between cities">
+    <title>Carbon Emission Calculator</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/routes-data.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/ui.js"></script>
+    <script defer src="js/config.js"></script>
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header__title">🌍 Carbon Emission Calculator</h1>
+            <p class="header__subtitle">Calculate CO₂ emissions for your journey</p>
+        </header>
+
+        <main class="main">
+            <form class="form" id="calculatorForm">
+                <div class="form__group">
+                    <label for="sourceCity" class="form__label">Source City</label>
+                    <div class="form__autocomplete">
+                        <input 
+                            type="text" 
+                            id="sourceCity" 
+                            class="form__input" 
+                            placeholder="Enter source city"
+                            required
+                            autocomplete="off"
+                        >
+                        <div class="form__autocomplete-list" id="sourceAutocomplete"></div>
+                    </div>
+                </div>
+
+                <div class="form__group">
+                    <label for="destinationCity" class="form__label">Destination City</label>
+                    <div class="form__autocomplete">
+                        <input 
+                            type="text" 
+                            id="destinationCity" 
+                            class="form__input" 
+                            placeholder="Enter destination city"
+                            required
+                            autocomplete="off"
+                        >
+                        <div class="form__autocomplete-list" id="destinationAutocomplete"></div>
+                    </div>
+                </div>
+
+                <div class="form__group">
+                    <label for="transportMode" class="form__label">Your Transport Mode</label>
+                    <div class="form__autocomplete">
+                        <input 
+                            type="text" 
+                            id="transportMode" 
+                            class="form__input" 
+                            placeholder="Select transport mode"
+                            required
+                            autocomplete="off"
+                        >
+                        <div class="form__autocomplete-list" id="transportAutocomplete"></div>
+                    </div>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="form__button" 
+                    id="calculateButton"
+                    disabled
+                >
+                    Calculate Emissions
+                </button>
+            </form>
+
+            <div class="results" id="results">
+                <div class="results__content">
+                    <div class="results__header">
+                        <h2 class="results__title">Your Journey</h2>
+                        <div class="results__route" id="routeInfo"></div>
+                    </div>
+                    
+                    <!-- Selected Mode Result -->
+                    <div class="results__selected">
+                        <div class="results__selected-header">
+                            <span class="results__selected-label">Your Choice</span>
+                            <span class="results__selected-mode" id="selectedModeName"></span>
+                        </div>
+                        <div class="results__selected-grid">
+                            <div class="results__stat results__stat--highlight">
+                                <span class="results__stat-icon">💨</span>
+                                <div class="results__stat-content">
+                                    <span class="results__stat-label">CO₂ Emission</span>
+                                    <span class="results__stat-value" id="selectedCO2">--</span>
+                                </div>
+                            </div>
+                            <div class="results__stat">
+                                <span class="results__stat-icon">⏱️</span>
+                                <div class="results__stat-content">
+                                    <span class="results__stat-label">Travel Time</span>
+                                    <span class="results__stat-value" id="selectedTime">--</span>
+                                </div>
+                            </div>
+                            <div class="results__stat">
+                                <span class="results__stat-icon">💵</span>
+                                <div class="results__stat-content">
+                                    <span class="results__stat-label">Estimated Cost</span>
+                                    <span class="results__stat-value" id="selectedCost">--</span>
+                                </div>
+                            </div>
+                            <div class="results__stat">
+                                <span class="results__stat-icon">📍</span>
+                                <div class="results__stat-content">
+                                    <span class="results__stat-label">Distance</span>
+                                    <span class="results__stat-value" id="selectedDistance">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CO2 Cost Emphasis -->
+                    <div class="results__section">
+                        <div class="results__impact">
+                            <div class="results__impact-title">🌍 Environmental Impact</div>
+                            <div class="results__impact-content" id="impactMessage"></div>
+                            <div class="results__impact-cost" id="co2CostMessage"></div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Section -->
+                    <div class="results__section">
+                        <div class="results__comparison-header">
+                            <div class="results__comparison-title">Compare with Other Modes</div>
+                            <div class="results__sort">
+                                <label for="sortMode" class="results__sort-label">Sort by:</label>
+                                <select id="sortMode" class="results__sort-select">
+                                    <option value="emission">CO₂ Emissions</option>
+                                    <option value="time">Travel Time</option>
+                                    <option value="cost">Cost</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="results__modes" id="modesComparison">
+                            <!-- Modes will be inserted here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__text">
+                Carbon emission estimates based on average transport emissions
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
