@@ -29,9 +29,9 @@ Help users make environmentally conscious travel decisions by visualizing carbon
 ## Structure
 
 ```
+├── index.html              # Main HTML file
+├── favicon.svg             # Site favicon
 ├── src/
-│   ├── index.html          # Main HTML file
-│   ├── favicon.svg         # Site favicon
 │   ├── css/
 │   │   └── styles.css      # Styling
 │   └── js/
@@ -71,14 +71,14 @@ Help users make environmentally conscious travel decisions by visualizing carbon
 
 ## Usage
 
-Open `src/index.html` in a modern web browser. No build process required.
+Open `index.html` in a modern web browser. No build process required.
 
 ## Deployment
 
 The project is configured for automatic deployment to GitHub Pages:
 - Push to `main` branch triggers the deployment workflow
-- View the workflow in `.github/workflows/deploy.yml`
-- Access your deployed site at `https://<username>.github.io/<repository-name>/`
+- Workflow in `.github/workflows/deploy.yml`
+- Access at `https://lorenzowind.github.io/carbon-calculator-sample/`
 
 ## Calculations
 
